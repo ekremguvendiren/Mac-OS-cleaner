@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CleanMac 🫧
+> **The Modern, Free, and Privacy-Focused macOS Cleaner.**
 
-## Getting Started
+![CleanMac Dashboard](https://raw.githubusercontent.com/ekremguvendiren/Mac-OS-cleaner/main/public/dashboard-preview.png)
 
-First, run the development server:
+**CleanMac** is a beautifully designed, native-feeling utility to keep your Mac running smoothly. Built with the "Mattr Glas" aesthetic, it combines powerful system tools with a visually stunning interface that feels right at home on macOS Sequoia.
+
+## ✨ Key Features
+
+*   **🗑️ Smart System Junk:** Safely remove cache files, logs, and temporary data to reclaim gigabytes of space.
+*   **👯 Secure Duplicate Finder:** Advanced hashing algorithms (MD5) identify true duplicates. Safe removal ensures you never lose important files.
+*   **📦 App Uninstaller:** Deep cleaning that finds and removes leftover implementation files, preferences, and caches associated with deleted apps.
+*   **🍺 Homebrew Manager:** Visual interface for your Homebrew packages. Update, upgrade, and cleanup outdated formulas with one click.
+*   **🔒 Browser Privacy:** Clear cookies, history, and cache from Chrome, Safari, and Firefox to protect your digital footprint.
+*   **⚡ RAM Performance:** Free up memory instantly when your system feels sluggish.
+*   **🕹️ Arcade Mode:** Waiting for a scan? Play the built-in "Clean Snake" game while you wait.
+*   **🛡️ Malware Monitor:** Basic signature-based scanning for common macOS adware agents.
+
+## 🎨 Design Philosophy: "Mattr Glas"
+
+CleanMac isn't just a tool; it's a piece of software craftsmanship.
+*   **Glassmorphism:** Heavy use of backdrop-blur and translucency to blend with your wallpaper.
+*   **Vibrant & Alive:** High-saturation accent colors and fluid animations make the app feel responsive and modern.
+*   **Native Feel:** Rounded corners, correct typography, and familiar layouts that follow Apple's Human Interface Guidelines.
+
+## 🚀 Installation
+
+### Option 1: Download the App (Recommended)
+1.  Go to the [Releases](https://github.com/ekremguvendiren/Mac-OS-cleaner/releases) page.
+2.  Download the latest `CleanMac-x.x.x-arm64.dmg`.
+3.  Open the file and drag **CleanMac** to your Applications folder.
+
+### Option 2: Build from Source
+Requirements: Node.js 18+, macOS (Apple Silicon recommended).
 
 ```bash
+# Clone the repository
+git clone https://github.com/ekremguvendiren/Mac-OS-cleaner.git
+cd clean-mac-ui
+
+# Install dependencies
+npm install
+
+# Run in Development Mode
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for Production (Standalone App)
+npm run electron:build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The compiled `.dmg` will be available in the `dist/` directory.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Technology Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+*   **Framework:** [Next.js](https://nextjs.org/) (React)
+*   **Desktop Engine:** [Electron](https://www.electronjs.org/)
+*   **Styling:** CSS Modules + "Mattr Glas" Design System
+*   **Language:** TypeScript
+*   **System Integration:** `systeminformation`, Node.js `fs`/`child_process`
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+*Disclaimer: CleanMac involves file deletion. While we implement safe "Move to Trash" logic, always have a backup of your important data.*
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**License**: MIT
