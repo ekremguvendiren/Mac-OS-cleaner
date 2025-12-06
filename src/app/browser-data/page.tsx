@@ -6,14 +6,14 @@ import { Globe, Trash2, Shield, Lock } from 'lucide-react';
 import BrowserSection from '@/components/BrowserData/BrowserSection';
 
 type BrowserState = {
-    chrome: { cache: boolean; history: boolean; cookies: boolean };
-    safari: { cache: boolean; history: boolean; cookies: boolean };
+    chrome: { cache: boolean; history: boolean; cookies: boolean; downloads: boolean };
+    safari: { cache: boolean; history: boolean; cookies: boolean; downloads: boolean };
 };
 
 export default function BrowserDataPage() {
     const [selected, setSelected] = useState<BrowserState>({
-        chrome: { cache: true, history: true, cookies: false },
-        safari: { cache: true, history: true, cookies: false }
+        chrome: { cache: true, history: true, cookies: false, downloads: false },
+        safari: { cache: true, history: true, cookies: false, downloads: false }
     });
     const [cleaning, setCleaning] = useState(false);
     const [cleaned, setCleaned] = useState(false);
