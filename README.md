@@ -13,8 +13,8 @@
 *   **🍺 Homebrew Manager:** Visual interface for your Homebrew packages. Update, upgrade, and cleanup outdated formulas with one click.
 *   **🔒 Browser Privacy:** Clear cookies, history, and cache from Chrome, Safari, and Firefox to protect your digital footprint.
 *   **⚡ RAM Performance:** Free up memory instantly when your system feels sluggish.
-*   **🕹️ Arcade Mode:** Waiting for a scan? Play the built-in "Clean Snake" game while you wait.
-*   **🛡️ Malware Monitor:** Basic signature-based scanning for common macOS adware agents.
+*   **🕹️ Arcade Game:** Waiting for a scan? Play the built-in "Clean Snake" game while you wait.
+*   **🛡️ Adware Check:** Basic signature-based scanning for common macOS adware agents.
 
 ## 🎨 Design Philosophy: "Mattr Glas"
 
