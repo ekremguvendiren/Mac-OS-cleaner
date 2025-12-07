@@ -1,7 +1,6 @@
 # CleanMac 🫧
 > **The Modern, Free, and Privacy-Focused macOS Cleaner.**
 
-![CleanMac Dashboard](https://raw.githubusercontent.com/ekremguvendiren/Mac-OS-cleaner/main/public/dashboard-preview.png)
 
 **CleanMac** is a beautifully designed, native-feeling utility to keep your Mac running smoothly. Built with the "Mattr Glas" aesthetic, it combines powerful system tools with a visually stunning interface that feels right at home on macOS Sequoia.
 
