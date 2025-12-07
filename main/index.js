@@ -13,17 +13,23 @@ const fs = require('fs');
 const startNextServer = () => {
     return new Promise((resolve, reject) => {
         // Helper to resolve the server path in both packed (ASAR) and unpacked environments
+        // Helper to resolve the server path in both packed (ASAR) and unpacked environments
         const resolveServerPath = () => {
             const possiblePaths = [
-                // 1. Inside app.asar (standard electron-builder files)
+                // 1. Standard electron-builder output (inside app.asar)
                 path.join(app.getAppPath(), '.next/standalone/server.js'),
-                // 2. Unpacked resources (if extraResources is used or asarUnpack)
+                // 2. Unpacked resources (if extraResources is used)
                 path.join(process.resourcesPath, '.next/standalone/server.js'),
-                // 3. Dev / Local structure
+                // 3. Nested deeper in app.asar (common with some configs)
+                path.join(app.getAppPath(), 'server/.next/standalone/server.js'),
+                // 4. Nested in resources
+                path.join(process.resourcesPath, 'server/.next/standalone/server.js'),
+                // 5. Dev / Local structure
                 path.join(__dirname, '../.next/standalone/server.js'),
-                path.join(process.cwd(), '.next/standalone/server.js')
+                path.join(process.cwd(), '.next/standalone/server.js'),
             ];
 
+            // Primary check: Specific known paths
             for (const p of possiblePaths) {
                 console.log(`Checking path: ${p}`);
                 if (fs.existsSync(p)) {
@@ -31,6 +37,54 @@ const startNextServer = () => {
                     return p;
                 }
             }
+
+            // Fallback: Recursive search if not found in standard locations
+            // This handles cases where the structure is unpredictable inside the package
+            console.log('Standard paths failed. Attempting recursive search...');
+
+            const findFileRecursive = (dir, filename, depth = 0, maxDepth = 6) => {
+                if (depth > maxDepth) return null;
+                try {
+                    const files = fs.readdirSync(dir);
+                    // Check files in current dir first
+                    if (files.includes(filename)) {
+                        const fullPath = path.join(dir, filename);
+                        // Strict validation: Ensure it's the Next.js server we are looking for
+                        if (fullPath.includes('.next/standalone')) {
+                            return fullPath;
+                        }
+                    }
+
+                    // Then recursively check subdirectories
+                    for (const file of files) {
+                        const filePath = path.join(dir, file);
+                        const stat = fs.statSync(filePath);
+                        if (stat.isDirectory()) {
+                            // optimization: prioritize directories that look like they contain the app
+                            if (file === '.next' || file === 'standalone' || file === 'server') {
+                                const found = findFileRecursive(filePath, filename, depth + 1, maxDepth);
+                                if (found) return found;
+                            } else if (!file.startsWith('.')) { // Skip hidden folders like .git
+                                const found = findFileRecursive(filePath, filename, depth + 1, maxDepth);
+                                if (found) return found;
+                            }
+                        }
+                    }
+                } catch (e) {
+                    // Ignore access errors
+                    return null;
+                }
+                return null;
+            };
+
+            // Search in app path first
+            const foundInApp = findFileRecursive(app.getAppPath(), 'server.js');
+            if (foundInApp) return foundInApp;
+
+            // Search in resources path
+            const foundInResources = findFileRecursive(process.resourcesPath, 'server.js');
+            if (foundInResources) return foundInResources;
+
             return null;
         };
 

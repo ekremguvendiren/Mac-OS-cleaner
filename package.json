@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "electron:dev": "concurrently \"next dev\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron:build": "next build && electron-builder"
+    "electron:build": "next build && node scripts/prepare-distribution.js && electron-builder"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -36,25 +36,27 @@
     "appId": "com.antigravity.cleanmac",
     "productName": "CleanMac",
     "mac": {
-      "target": "dmg",
+      "target": {
+        "target": "dmg",
+        "arch": [
+          "arm64"
+        ]
+      },
       "category": "public.app-category.utilities",
       "hardenedRuntime": true,
       "gatekeeperAssess": false
     },
     "files": [
       "main/**/*",
-      ".next/standalone/**/*",
-      "public/**/*"
-    ],
-    "extraResources": [
       {
-        "from": ".next/static",
-        "to": ".next/standalone/.next/static"
+        "from": ".next/standalone-final",
+        "to": ".",
+        "filter": [
+          "**/*"
+        ]
       },
-      {
-        "from": "public",
-        "to": ".next/standalone/public"
-      }
+      "!**/*.ts",
+      "!*.map"
     ],
     "directories": {
       "output": "dist"
