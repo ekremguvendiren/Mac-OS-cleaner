@@ -168,6 +168,8 @@ const createWindow = () => {
     mainWindow = new BrowserWindow({
         width: 1200,
         height: 800,
+        show: true, // Explicitly show the window
+        center: true, // Explicitly center the window
         titleBarStyle: 'hiddenInset', // Mac-like title bar
         webPreferences: {
             nodeIntegration: false,

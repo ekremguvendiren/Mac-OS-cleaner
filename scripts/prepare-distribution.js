@@ -47,7 +47,11 @@ console.log(`📍 Found Next.js server root at: ${realServerRoot}`);
 
 // 2. Copy the contents of the real server root to our final output
 console.log('📂 Flattening directory structure...');
-cp.execSync(`cp -R "${realServerRoot}/"* "${FINAL_OUTPUT_DIR}/"`);
+// cp.execSync(`cp -R "${realServerRoot}/"* "${FINAL_OUTPUT_DIR}/"`);
+// Replacement using fs.cpSync for each child to mimic 'cp -R *'
+fs.readdirSync(realServerRoot).forEach(file => {
+    fs.cpSync(path.join(realServerRoot, file), path.join(FINAL_OUTPUT_DIR, file), { recursive: true });
+});
 
 // 3. Flatten/Merge Static Assets
 // standalone folder usually misses the public/ and .next/static folders from the root, 
@@ -60,8 +64,9 @@ const destStaticDir = path.join(FINAL_OUTPUT_DIR, '.next/static');
 if (fs.existsSync(rootStaticDir)) {
     console.log('🎨 Copying static assets (.next/static)...');
     fs.mkdirSync(path.dirname(destStaticDir), { recursive: true });
-    // Using cp -R to copy contents
-    cp.execSync(`cp -R "${rootStaticDir}" "${path.dirname(destStaticDir)}"`);
+    // Using fs.cpSync instead of execSync
+    // cp.execSync(`cp -R "${rootStaticDir}" "${path.dirname(destStaticDir)}"`);
+    fs.cpSync(rootStaticDir, destStaticDir, { recursive: true });
 } else {
     console.warn('⚠️  .next/static not found in project root. Setup might be incomplete.');
 }
@@ -72,7 +77,8 @@ const destPublicDir = path.join(FINAL_OUTPUT_DIR, 'public');
 
 if (fs.existsSync(rootPublicDir)) {
     console.log('🖼️  Copying public assets...');
-    cp.execSync(`cp -R "${rootPublicDir}" "${FINAL_OUTPUT_DIR}"`);
+    // cp.execSync(`cp -R "${rootPublicDir}" "${FINAL_OUTPUT_DIR}"`);
+    fs.cpSync(rootPublicDir, destPublicDir, { recursive: true });
 }
 
 // 4. Create a package.json for the production install if needed or verify dependencies
