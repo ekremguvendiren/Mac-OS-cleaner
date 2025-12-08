@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "main/index.js",
+  "productName": "CleanMac",
   "description": "A modern macOS cleaning utility.",
   "author": "Antigravity",
   "scripts": {
@@ -48,7 +49,8 @@
       ],
       "category": "public.app-category.utilities",
       "hardenedRuntime": true,
-      "gatekeeperAssess": false
+      "gatekeeperAssess": false,
+      "icon": "build/icons/CleanMac.icns"
     },
     "asarUnpack": [
       "server.js",
