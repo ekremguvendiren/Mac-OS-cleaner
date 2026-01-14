@@ -1,0 +1,65 @@
+# MacHub
+
+**MacHub** is a next-generation macOS utility designed to keep your system clean, secure, and optimized. Built with **Tauri** (Rust + React), it delivers a native-like experience with an incredibly small footprint and blazing fast speed.
+
+## ✨ Features
+
+- **🚀 System Clean**: Instantly free up space by removing system logs, cache files, and temporary data.
+- **🛡️ Security Scan**: Advanced vulnerability scanner with a "Bug Bounty" style interface to detect and neutralize threats.
+- **📦 Large File Finder**: Identify and manage large files that are cluttering your disk.
+- **🔧 Startup Manager**: Control which apps launch at login to improve boot time.
+- **🕵️ Internet Analyzer**: Monitor your network connection and speed directly from the sidebar.
+- **🔑 Password Generator**: Generate strong, secure passwords instantly.
+
+## 🛠️ Tech Stack
+
+- **Core**: [Rust](https://www.rust-lang.org/) (Tauri 2.0) - For backend performance and security.
+- **Frontend**: [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) - For a robust and interactive UI.
+- **Build Tool**: [Vite](https://vitejs.dev/) - For lightning-fast development and building.
+- **Styling**: Vanilla CSS / Modules with a focus on dark mode and glassmorphism.
+
+## 📥 Download & Installation
+
+1. Go to the **[Releases](https://github.com/ekremguvendiren/MacHub/releases)** page.
+2. Download the latest `.dmg` file (e.g., `MacHub_1.0.0_aarch64.dmg`).
+3. Double-click the downloaded file and drag **MacHub** to your **Applications** folder.
+4. Open the app from your Applications folder.
+
+> **Note**: If you see a security warning, you may need to right-click the app and select "Open" to bypass macOS security checks for unsigned apps.
+
+### Prerequisites (For Development)
+- macOS (Universal Binary for Intel & Apple Silicon)
+- Node.js (v20+)
+- Rust (Latest Stable)
+
+### Development
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ekremguvendiren/MacHub.git
+   cd MacHub
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Run in development mode:
+   ```bash
+   npm run tauri dev
+   ```
+
+### Build for Production
+To build a standalone `.dmg` or `.app`:
+```bash
+npm run tauri build
+```
+The output will be found in `src-tauri/target/release/bundle/dmg`.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request.
+
+## 📄 License
+
+MIT License © 2026
