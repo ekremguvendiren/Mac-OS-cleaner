@@ -1,6 +1,5 @@
 # CleanMac
 
-![CleanMac](public/app-icon.png)
 
 **CleanMac** is a modern, high-performance macOS utility designed to keep your system clean, secure, and optimized. Built with **Tauri** (Rust + React), it delivers a native-like experience with an incredibly small footprint and blazing fast speed.
 
