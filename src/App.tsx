@@ -14,6 +14,7 @@ import {
   Grid,
   ScrollText,
   ShieldCheck,
+  Settings as SettingsIcon,
   Lock as LockIcon
 } from 'lucide-react';
 import './App.css';
@@ -27,6 +28,7 @@ import FileConverter from './components/FileConverter';
 import ActivityLog from './components/ActivityLog';
 import PasswordGenerator from './components/PasswordGenerator';
 import SecureVault from './components/SecureVault';
+import Settings from './components/Settings';
 import { useLogs } from './contexts/LogContext';
 
 interface SystemStats {
@@ -156,6 +158,9 @@ function App() {
           </button>
           <button className={activeTab === 'games' ? 'active' : ''} onClick={() => setActiveTab('games')}>
             <Gamepad2 size={18} /> Games
+          </button>
+          <button className={activeTab === 'settings' ? 'active' : ''} onClick={() => setActiveTab('settings')}>
+            <SettingsIcon size={18} /> Settings
           </button>
         </div>
 
@@ -447,6 +452,10 @@ function App() {
             )}
 
             {activeTab === 'games' && (<GamesHub />)}
+
+            {activeTab === 'settings' && (
+              <Settings />
+            )}
           </div>
         </div>
       </div>
